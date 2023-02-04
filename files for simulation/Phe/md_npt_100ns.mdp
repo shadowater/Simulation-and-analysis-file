@@ -1,0 +1,57 @@
+;
+integrator              = md
+dt                      = 0.002
+nsteps                  = 50000000
+pbc                     = xy
+ns-type                 = grid
+;
+tcoupl                  = V-rescale
+ref_t                   = 265
+tau_t                   = 0.5
+tc_grps                 = system
+
+gen_vel  = no
+gen_temp = 265 ; [K]
+gen_seed = -1
+
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 2000
+nstenergy                = 2000
+nstxout-compressed       = 2000
+nstcalcenergy            = 1
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+rlist                   = 1.2
+rcoulomb                = 1.2
+coulombtype             = PME
+fourierspacing          = 0.16
+;
+ewald-geometry           = 3dc
+DispCorr                 = EnerPres
+nwall			         = 2  
+wall-type                = 9-3
+wall-atomtype		     = OWT4 OWT4
+wall-r-linpot            = 0.1
+wall-density		     = 120 120
+wall-ewald-zfac          = 3
+;
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = semiisotropic
+tau_p                   = 4.0
+compressibility         = 4.5e-5  0
+ref_p                   = 1.0     1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = no
+refcoord_scaling        = all
+;
+nstcomm                 = 1 ;[steps] frequency for center of mass motion removal
+comm_mode               = linear
+comm_grps               = system

@@ -10,7 +10,7 @@ ref_t                   = 265
 tau_t                   = 0.5
 tc_grps                 = system
 
-gen_vel  = no
+gen_vel  = yes
 gen_temp = 265 ; [K]
 gen_seed = -1
 
